@@ -1,10 +1,9 @@
-class MotherAccount {
+class Account {
   balanceInit: number = 0;
   name: string;
   constructor(name: string) {
     this.name = name;
   }
-
   public deposit(amount: number): void {
     this.balanceInit = this.balanceInit + amount;
     console.log(`Depositati ${amount}$, il saldo dopo il deposito è ${this.balanceInit}$`);
@@ -13,31 +12,34 @@ class MotherAccount {
     this.balanceInit = this.balanceInit - amount;
     console.log(`Prelevati ${amount}$, il saldo dopo il prelievo è ${this.balanceInit}$`);
   }
+}
+
+class MotherAccount extends Account {
   public addInterest(): void {
     this.balanceInit = this.balanceInit * 1.1;
     console.log(`Il saldo dopo gli interessi applicati è ${this.balanceInit}$`);
   }
 }
 
-class SonAccount extends MotherAccount {
+class SonAccount extends Account {
   public addInterest(): void {
-    this.balanceInit = this.balanceInit;
-    console.log(`Il saldo è ${this.balanceInit}$, non ci sono interessi applicabili.`);
+    this.balanceInit = this.balanceInit * 1.1;
+    console.log(`Non ci sono interessi applicabili`);
   }
 }
 
-let accountM = new MotherAccount("Mother");
-console.log(`${accountM.name} ACCOUNT`);
-accountM.deposit(400);
-accountM.withdraw(100);
-accountM.deposit(600);
-accountM.withdraw(400);
-accountM.addInterest();
+let motherAccount = new MotherAccount("Mother");
+console.log(`${motherAccount.name} ACCOUNT`);
+motherAccount.deposit(400);
+motherAccount.withdraw(100);
+motherAccount.deposit(600);
+motherAccount.withdraw(400);
+motherAccount.addInterest();
 
-let accountS = new SonAccount("Son");
-console.log(`${accountS.name} ACCOUNT`);
-accountS.deposit(500);
-accountS.withdraw(200);
-accountS.deposit(300);
-accountS.withdraw(250);
-accountS.addInterest();
+let sonAccount = new SonAccount("Son");
+console.log(`${sonAccount.name} ACCOUNT`);
+sonAccount.deposit(500);
+sonAccount.withdraw(200);
+sonAccount.deposit(300);
+sonAccount.withdraw(250);
+sonAccount.addInterest();
