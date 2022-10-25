@@ -3,11 +3,11 @@ class MotherAccount {
 
   public deposit(amount: number): void {
     this.balanceInit = this.balanceInit + amount;
-    console.log(`Il saldo M dopo il deposito è ${this.balanceInit}$`);
+    console.log(`Il saldo dopo il deposito è ${this.balanceInit}$`);
   }
   public withdraw(amount: number): void {
     this.balanceInit = this.balanceInit - amount;
-    console.log(`Il saldo M dopo il prelievo è ${this.balanceInit}$`);
+    console.log(`Il saldo dopo il prelievo è ${this.balanceInit}$`);
   }
   public addInterest(): void {
     this.balanceInit = this.balanceInit * 1.1;
@@ -16,14 +16,6 @@ class MotherAccount {
 }
 
 class SonAccount extends MotherAccount {
-  public deposit(amount: number): void {
-    this.balanceInit = this.balanceInit + amount;
-    console.log(`Il saldo S dopo il deposito è ${this.balanceInit}$`);
-  }
-  public withdraw(amount: number): void {
-    this.balanceInit = this.balanceInit - amount;
-    console.log(`Il saldo S dopo il prelievo è ${this.balanceInit}$`);
-  }
   public addInterest(): void {
     this.balanceInit = this.balanceInit;
     console.log(`Il saldo è ${this.balanceInit}$, non ci sono interessi applicabili.`);
@@ -31,12 +23,14 @@ class SonAccount extends MotherAccount {
 }
 
 let accountM = new MotherAccount();
+console.log("MOTHER ACCOUNT");
 accountM.deposit(400);
 accountM.withdraw(100);
 accountM.deposit(600);
 accountM.withdraw(400);
 accountM.addInterest();
 
+console.log("SON ACCOUNT");
 let accountS = new SonAccount();
 accountS.deposit(500);
 accountS.withdraw(200);
